@@ -2,11 +2,14 @@
 
 /***************************************/
 
-Backend is a seed for Symfony4 API
-Fork contains proof of concept based on several tutorials
-React.js and Redux, backend supported by Symfony4 API
+Fork contains proof of concept based on several front end tutorials
+
+React.js and Redux, Backend is a seed for Symfony4 API
+
 Renders page from preloaded JSON and then updates/sync state through API
+
 Below is readme from tutorial used as main code source
+
 Redux states and API handling were added on top of it
 
 /***************************************/
