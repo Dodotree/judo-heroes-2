@@ -1,5 +1,3 @@
-
-
 /***************************************/
 
 Fork contains proof of concept based on several front end tutorials
