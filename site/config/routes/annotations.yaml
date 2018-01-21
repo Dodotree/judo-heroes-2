@@ -1,0 +1,3 @@
+controllers:
+    resource: ../../src/Tensor/CoreBundle/Controller/
+    type: annotation

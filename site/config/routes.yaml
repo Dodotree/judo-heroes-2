@@ -1,0 +1,16 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+tensor_admin:
+    resource: "@TensorAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin/
+
+tensor_user:
+    resource: "@TensorUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+tensor_core:
+    resource: "@TensorCoreBundle/Resources/config/routing.yml"
+    prefix:   /
+

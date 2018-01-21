@@ -1,0 +1,16 @@
+tensor_core_api:
+    path:     /
+    defaults: { _controller: TensorCoreBundle:Landing:landing }
+
+tensor_core_landing:
+    path:     /api
+    defaults: { _controller: TensorCoreBundle:Api:index }
+
+tensor_core_about:
+    path:     /about
+    defaults: { _controller: TensorCoreBundle:Static:about }
+#tensor_core_about_locale:
+#    path:     /{_locale}/about
+#    defaults: { _controller: TensorCoreBundle:Static:about }
+#    requirements:
+#        _locale: '%app.locales%'
