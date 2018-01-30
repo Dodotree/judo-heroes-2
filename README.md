@@ -1,5 +1,7 @@
 /***************************************/
 
+React.js and Redux, Backend is a seed for Symfony4 API
+
 Fork contains proof of concept based on several front end tutorials: judo-heroes2 itself,
 
 https://github.com/sadams/todo-redux-react-webpack
@@ -11,17 +13,13 @@ https://github.com/reactjs/redux/tree/master/examples/real-world
 Look at branches to fetch code for each tutorial 
 and change https://github.com   to  https://codesandbox.io/s/github  see it in action in code sandbox
 
-React/redux files location is symlinked from public/bundles/tensorcore to
+In my example React/redux files location is symlinked from public/bundles/tensorcore to
+
 https://github.com/Dodotree/judo-heroes-2/tree/master/site/src/Tensor/CoreBundle/Resources/public/src
-
-
-React.js and Redux, Backend is a seed for Symfony4 API
 
 Renders page from preloaded JSON and then updates/sync state through API
 
-Below is readme from tutorial used as main code source
-
-Redux states and API handling were added on top of it
+Below is readme from tutorial used as main code source. Redux states and API handling were added on top of it
 
 /***************************************/
 
