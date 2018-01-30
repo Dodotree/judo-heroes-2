@@ -1,6 +1,19 @@
 /***************************************/
 
-Fork contains proof of concept based on several front end tutorials
+Fork contains proof of concept based on several front end tutorials: judo-heroes2 itself,
+
+https://github.com/sadams/todo-redux-react-webpack
+
+https://github.com/gaearon/todos/tree/master/src
+
+https://github.com/reactjs/redux/tree/master/examples/real-world
+
+Look at branches to fetch code for each tutorial 
+and change https://github.com   to  https://codesandbox.io/s/github  see it in action in code sandbox
+
+React/redux files location is symlinked from public/bundles/tensorcore to
+https://github.com/Dodotree/judo-heroes-2/tree/master/site/src/Tensor/CoreBundle/Resources/public/src
+
 
 React.js and Redux, Backend is a seed for Symfony4 API
 
