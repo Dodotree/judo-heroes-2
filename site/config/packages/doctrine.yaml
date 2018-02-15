@@ -23,11 +23,11 @@ doctrine:
                 is_bundle: true
                 type: annotation
                 dir: '/Entity'
-                prefix: 'Core\Entity'
+                prefix: ''
                 alias: Core
             TensorUserBundle:
                 is_bundle: true
                 type: annotation
                 dir: '/Entity'
-                prefix: 'User\Entity'
+                prefix: ''
                 alias: User

@@ -1,9 +1,47 @@
 security:
+
+    encoders:
+        Tensor\UserBundle\Entity\User: bcrypt
+
     providers:
-        in_memory: { memory: ~ }
+        tensor_user_provider:
+            entity:
+                class: Tensor\UserBundle\Entity\User
+                property: username
+
     firewalls:
         dev:
-            pattern: ^/(_(profiler|wdt)|src|css|images|js)/
+            context: Global
+            pattern: ^/(_(profiler|wdt)|src|css|images|js|bundles)/
             security: false
         main:
+            context: Global
             anonymous: ~
+            http_basic: ~
+            form_login:
+                login_path:   tensor_user_login
+                check_path:   tensor_user_login
+                failure_path: tensor_user_login
+            json_login:
+                check_path: /api_login
+            logout:
+                path:   tensor_user_logout
+                target: tensor_core_landing
+                success_handler: logout_handler
+
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+
+    access_control:
+        - { path: ^/landing, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/(en|es|de|fr|hi|zh|zh_fu|ja|ru|am|ar|jv|km|ko|tl|vi|so|ne)/landing, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        - { path: ^/admin, roles: ROLE_SUPER_ADMIN, requires_channel: https }
+
+        - { path: ^/, roles: ROLE_USER }
+

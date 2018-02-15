@@ -1,0 +1,264 @@
+<?php
+
+namespace Tensor\CoreBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraint;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+
+/**
+ * Athlete
+ *
+ * @ORM\Table(name="athletes")
+ * @ORM\Entity(repositoryClass="Tensor\CoreBundle\Entity\AthleteRepository")
+ * @ORM\MappedSuperclass
+ * @ORM\HasLifecycleCallbacks
+ * @UniqueEntity(fields="name", message="Name already taken")
+ */
+class Athlete
+{
+    /**
+     * @var integer
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=250, unique=false)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=250, unique=false)
+     */
+    protected $birth;
+
+    /**
+     * @ORM\Column(type="string", length=250, unique=false)
+     */
+    private $image;
+
+    /**
+     * @ORM\Column(type="string", length=250, unique=false)
+     */
+    private $cover;
+
+    /**
+     * @ORM\Column(type="string", length=250, unique=false)
+     */
+    private $link;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Country", inversedBy="athletes")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    protected $country;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Medal", mappedBy="athlete", indexBy="id")
+     */
+    protected $medals;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->medals = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name.
+     *
+     * @param string $name
+     *
+     * @return Athlete
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name.
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set birth.
+     *
+     * @param \DateTime $birth
+     *
+     * @return Athlete
+     */
+    public function setBirth($birth)
+    {
+        $this->birth = $birth;
+
+        return $this;
+    }
+
+    /**
+     * Get birth.
+     *
+     * @return \DateTime
+     */
+    public function getBirth()
+    {
+        return $this->birth;
+    }
+
+    /**
+     * Set image.
+     *
+     * @param string $image
+     *
+     * @return Athlete
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image.
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set cover.
+     *
+     * @param string $cover
+     *
+     * @return Athlete
+     */
+    public function setCover($cover)
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
+
+    /**
+     * Get cover.
+     *
+     * @return string
+     */
+    public function getCover()
+    {
+        return $this->cover;
+    }
+
+    /**
+     * Set link.
+     *
+     * @param string $link
+     *
+     * @return Athlete
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    /**
+     * Get link.
+     *
+     * @return string
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    /**
+     * Set country.
+     *
+     * @param \Tensor\CoreBundle\Entity\Country|null $country
+     *
+     * @return Athlete
+     */
+    public function setCountry(\Tensor\CoreBundle\Entity\Country $country = null)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country.
+     *
+     * @return \Tensor\CoreBundle\Entity\Country|null
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Add medal.
+     *
+     * @param \Tensor\CoreBundle\Entity\Medal $medal
+     *
+     * @return Athlete
+     */
+    public function addMedal(\Tensor\CoreBundle\Entity\Medal $medal)
+    {
+        $this->medals[] = $medal;
+
+        return $this;
+    }
+
+    /**
+     * Remove medal.
+     *
+     * @param \Tensor\CoreBundle\Entity\Medal $medal
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeMedal(\Tensor\CoreBundle\Entity\Medal $medal)
+    {
+        return $this->medals->removeElement($medal);
+    }
+
+    /**
+     * Get medals.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMedals()
+    {
+        return $this->medals;
+    }
+}

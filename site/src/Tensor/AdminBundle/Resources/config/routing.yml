@@ -1,0 +1,4 @@
+tensor_admin_admin:
+    path:     /admin
+    defaults: { _controller: TensorAdminBundle:Admin:admin }
+

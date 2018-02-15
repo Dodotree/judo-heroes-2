@@ -1,0 +1,24 @@
+tensor_core_landing:
+    path:     /
+    defaults: { _controller: TensorCoreBundle:Landing:landing }
+tensor_user_login:
+    path:     /landing/login
+    defaults: { _controller: TensorUserBundle:Security:login }
+tensor_user_register:
+    path:     /landing/register
+    defaults: { _controller: TensorUserBundle:Registration:register }
+
+
+tensor_api_user_login:
+    path:     /api_login
+    defaults: { _controller: TensorUserBundle:Security:apilogin }
+
+tensor_user_settings:
+    path:     /settings
+    defaults: { _controller: TensorUserBundle:Home:settings }
+
+tensor_user_logout:
+    path:     /logout
+    defaults: { _controller: TensorUserBundle:Security:logout }
+
+

@@ -1,10 +1,24 @@
-tensor_core_api:
-    path:     /
+tensor_core_home:
+    path:     /home/{_subpage}
     defaults: { _controller: TensorCoreBundle:Landing:landing }
+    requirements:
+        _subpage: \d+
 
-tensor_core_landing:
+tensor_core_home_expanded:
+    path:     /home/{_subpage}/athlete/{_athlete}
+    defaults: { _controller: TensorCoreBundle:Landing:landing }
+    requirements:
+        _subpage: \d+
+        _athlete: \d+
+
+
+tensor_core_api:
     path:     /api
     defaults: { _controller: TensorCoreBundle:Api:index }
+
+tensor_core_api_init:
+    path:     /api/init
+    defaults: { _controller: TensorCoreBundle:Api:default }
 
 tensor_core_about:
     path:     /about
