@@ -8,7 +8,7 @@
           <div class="pull-right">
             <router-link :to="{name: 'SettingsForm', params: { something: 'getIt' } }">Settings</router-link>
             <a href="#" @click.prevent="actions.logoutUser()" :actions="actions">Logout</a>
-            <a href="#" @click.prevent="actions.loadAthletes()" :actions="actions">Reload</a>
+            <a href="#" @click.prevent="actions.loadSubpage('athletes', 1)" :actions="actions">Reload</a>
           </div>
         </div>
         <div class="container">

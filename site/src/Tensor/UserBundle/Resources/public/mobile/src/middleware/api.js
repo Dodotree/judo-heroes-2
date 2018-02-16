@@ -130,7 +130,7 @@ const getNextPageUrl = response => {
 // Actual ajax call that returnes promise and resolves it
 // then  normalizes the result JSON according to schema.
 // This makes every API response have the same shape, regardless of how nested it was.
-const callApi = (endpoint, schema, data) => {
+const callApi = (endpoint, schema, data, options) => {
   const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint
   //  returns middleware function callApi
   console.log('API Return AJAX call function')
@@ -231,7 +231,11 @@ export default store => next => action => {
 
   // return fetching function, as original caller function will wait for it to finish before execution
   console.log('API Return async api call function: (promise) with .then(Success next(), Fail next()) attached')
-  return callApi(endpoint, schema, data)
+
+  let options = ('LOGIN_SUCCESS' === successType) ? {} :     {headers: { 'Content-Type': ['application/x-www-form-urlencoded'] }}
+  let mydata = ('LOGIN_SUCCESS' === successType) ? data : toFormData(data)
+
+  return callApi(endpoint, schema, mydata, options)
     .then(
       response => next(actionWith({
         response,

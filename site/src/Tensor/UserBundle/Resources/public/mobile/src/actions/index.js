@@ -56,12 +56,12 @@ export const logoutUser = () => (dispatch, getState) => {
 // Athletes ////////////////////////////////////////////////
 // Fetches athletes page from API.
 // Relies on the custom API middleware defined in ../middleware/api.js.
-const fetchAthletes = () => ({
+const fetchAthletes = (subpageIdData) => ({
   key: 'athletes',
   [CALL_API]: {
     types: [ ATHLETE_REQUEST, ATHLETE_SUCCESS, ATHLETE_FAILURE ],
     endpoint: '/api',
-    data: '',
+    data: subpageIdData,
     schema: Schemas.ATHLETE_ARRAY
   }
 })
@@ -69,13 +69,19 @@ const fetchAthletes = () => ({
 // Fetches users from API unless they don't need an update.
 // Relies on Redux Thunk middleware.
 // via bindActionCreator
-export const loadAthletes = () => (dispatch, getState) => {
+export const loadSubpage = (entity, subpageIdData) => (dispatch, getState) => {
   // const user = getState().entities.users[login]
   // if (user && requiredFields.every(key => user.hasOwnProperty(key))) {
   //  return null
   // }
-  console.log('fetching athletes')
-  return dispatch(fetchAthletes())
+
+  console.log('////////////////////// Attempt ////////////')
+  console.log(entity, subpageIdData)
+
+  if (entity === 'athletes') {
+    console.log('fetching athletes')
+    return dispatch(fetchAthletes(subpageIdData))
+  }
 }
 
 /// //////////////////////////// displayed ids action creators ///////////////////

@@ -61,6 +61,9 @@ export default {
     }
   },
   created () {
+    // this.store.subscribe(() => {
+    //  console.log('???????????????????????', this.store.getState().pagination.athletes.current);
+    // });
   },
   methods: {
     mapStateToProps (state) {

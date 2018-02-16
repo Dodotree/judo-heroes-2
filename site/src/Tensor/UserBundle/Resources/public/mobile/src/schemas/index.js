@@ -41,6 +41,6 @@ export const Schemas = {
   ATHLETE_ARRAY: [athleteSchema]
 }
 
-const normalizedData = normalize({user:{'id': 2, 'username': 'boi'}}, loggedUserSchema)
+const normalizedData = normalize({user: {id: 2, username: 'boi'}}, loggedUserSchema)
 
 console.log('MIDDLEWARE INIT SCHEMAS', normalizedData)

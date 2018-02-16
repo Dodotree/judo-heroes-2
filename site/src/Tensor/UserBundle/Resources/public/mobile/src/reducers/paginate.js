@@ -44,10 +44,6 @@ const paginate = ({ types, mapActionToKey }) => {
         }
       case successType:
         console.log('Pagination update SUCCESS', state, action.response.pagination)
-        if (action.response && action.response.pagination) {
-          return assign({}, state, action.response.pagination)
-        }
-
         return {
           ...state,
           isFetching: false,
@@ -67,7 +63,13 @@ const paginate = ({ types, mapActionToKey }) => {
 
   return (state = {}, action) => {
     // Update pagination by key
-    console.log('Pagination: action from prev. middleware', state, action, mapActionToKey(action), mapActionToKey)
+    console.log('Pagination: action from prev. middleware', state, action, mapActionToKey(action))
+
+    // You have to update pagination if you recieve it as side from different actions
+    // Not thouse that you would generally expect to be requestType, successType, failureType
+    if (action.response && action.response.pagination) {
+      return assign({}, state, action.response.pagination)
+    }
 
     switch (action.type) {
       case requestType:

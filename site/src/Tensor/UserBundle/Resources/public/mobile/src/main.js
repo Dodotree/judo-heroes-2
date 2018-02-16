@@ -4,6 +4,7 @@ import App from './App'
 
 import configureStore from './store/configureStore'
 import { normalizeResponse } from './middleware/api'
+import * as Actions from './actions'
 
 let initialState = JSON.parse(window.__PRELOADED_STATE__)
 // Allow the passed state to be garbage-collected
@@ -46,7 +47,10 @@ let mapStateToRoute = (state) => {
   console.log(':::::::::::::', storeState.entities, storeState.selections)
   console.log('**************** routing state **************', router.history.current, state.loggedUser, state.loggedUser.loggedIn)
   if (router.history.current.meta.requireLogout && state.loggedUser.loggedIn) {
-    router.push({name: 'private', subpageId: 1})
+    console.log('**************** Route to private', storeState.pagination.athletes.current)
+    router.push('/home/'+storeState.pagination.athletes.current)
+    // named route didn't create URL for some reason
+    // router.push({name: 'private', subpageId: storeState.pagination.athletes.current})
   } else if (router.history.current.meta.requireLogin && !state.loggedUser.loggedIn) {
     router.push({name: 'LoginForm'})
   }
@@ -55,7 +59,25 @@ let mapStateToRoute = (state) => {
 Vue.config.productionTip = false
 
 router.beforeEach((to, from, next) => {
-  console.log('!!!!!!!!!!!!!!!!! before route !!!', to, from)
+  let storeState = store.getState()
+  console.log('!!!!!!!!!!!!!!!!! before route !!!', to, to.meta, to.params, from)
+  console.log('>>>>>>>>>>>', storeState.pagination)
+  if (to.meta.paginationKey) {
+    let itemPagination = storeState.pagination[to.meta.paginationKey]
+    if ('undefined' !== typeof itemPagination) {
+      if (itemPagination.current !== Number(to.params.subpageId)) {
+        console.log('Call action creator for fetching given key')
+        store.dispatch(
+          Actions.loadSubpage(to.meta.paginationKey, {[to.meta.paginationKey]: to.params.subpageId})
+        )
+      } else {
+        console.log('Already paginated', Actions.loadSubpage, storeState.pagination[to.meta.paginationKey])
+        // store.dispatch(Actions.loadSubpage(to.meta.paginationKey, to.params.subpageId))
+      }
+    } else {
+      console.log('Routing key for pagination does not exist in state pagination')
+    }
+  }
   next()
 })
 
@@ -64,6 +86,6 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  provide: { store: configureStore(preloadedState), mapStateToRoute: mapStateToRoute },
+  provide: { store: store, mapStateToRoute: mapStateToRoute },
   components: { App }
 })

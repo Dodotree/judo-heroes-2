@@ -31,34 +31,34 @@ export default new Router({
           path: 'login',
           name: 'LoginForm',
           component: LoginForm,
-          meta: { requireLogin: false, requireLogout: true },
+          meta: { requireLogin: false, requireLogout: true, paginationKey: false },
           props: routeProps
         },
         {
           path: 'register',
           name: 'RegisterForm',
           component: RegisterForm,
-          meta: { requireLogin: false, requireLogout: true }
+          meta: { requireLogin: false, requireLogout: true, paginationKey: false }
         },
         {
           path: 'reset',
           name: 'ResetPass',
-          meta: { requireLogin: false, requireLogout: false }
+          meta: { requireLogin: false, requireLogout: false, paginationKey: false }
         },
         {
           path: 'about',
           name: 'About',
-          meta: { requireLogin: false, requireLogout: false }
+          meta: { requireLogin: false, requireLogout: false, paginationKey: false }
         },
         {
           path: 'legal',
           name: 'Legal',
-          meta: { requireLogin: false, requireLogout: false }
+          meta: { requireLogin: false, requireLogout: false, paginationKey: false }
         },
         {
           path: 'copyright',
           name: 'Copyright',
-          meta: { requireLogin: false, requireLogout: false }
+          meta: { requireLogin: false, requireLogout: false, paginationKey: false }
         }
       ]
     },
@@ -72,20 +72,20 @@ export default new Router({
           path: ':subpageId',
           name: 'private',
           component: PrivatePage,
-          meta: { requireLogin: true, requireLogout: false },
-          props: {name:'Routing param', subpageId: this.subpageId}
+          meta: { requireLogin: true, requireLogout: false, paginationKey: 'athletes' },
+          props: { name: 'Routing param', subpageId: this.subpageId }
         },
         {
           path: ':subpageId/athlete/:id',
           name: 'AthletePage',
           component: AthletePage,
-          meta: { requireLogin: true, requireLogout: false },
+          meta: { requireLogin: true, requireLogout: false, paginationKey: 'athletes' },
           props: true
         },
         {
           path: 'settings',
           name: 'SettingsForm',
-          meta: { requireLogin: true, requireLogout: false }
+          meta: { requireLogin: true, requireLogout: false, paginationKey: false }
         }
       ]
     }

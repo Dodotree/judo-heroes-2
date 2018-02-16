@@ -19,12 +19,13 @@ class ApiController extends Controller
     public function indexAction(Request $request){
         $user = $this->getUser();
 
-        $page = 1;
+        $page = (isset($_POST['athletes']))? $_POST['athletes']:1;
         $per_page = 3;
         list($athletes, $pagination) = $this->get('api_functions')->getAthletesPagination($page, $per_page);
 
         return $this->json([
             'successes'=> [
+                'post' => $_POST,
                 'athletes'=>$athletes,
                 'pagination'=> [
                     'athletes'=> $pagination,
