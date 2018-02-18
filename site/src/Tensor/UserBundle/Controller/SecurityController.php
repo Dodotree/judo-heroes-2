@@ -17,10 +17,6 @@ class SecurityController extends Controller
             // return $this->redirect('/');
             return $this->redirectToRoute('tensor_core_home', array('_subpage'=>1));
         }
-var_dump($request->getMethod());
-            return $this->json(['errors'=>[
-                'loggedUser' => null,
-            ]]);
 
         $authenticationUtils = $this->get('security.authentication_utils');
 

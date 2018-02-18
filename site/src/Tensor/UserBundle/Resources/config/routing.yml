@@ -6,9 +6,12 @@ tensor_user_login:
     defaults: { _controller: TensorUserBundle:Security:login }
 tensor_user_register:
     path:     /landing/register
+    # defaults: { _controller: TensorUserBundle:Registration:register }
+    defaults: { _controller: TensorUserBundle:Security:login }
+
+tensor_api_user_register:
+    path:     /register
     defaults: { _controller: TensorUserBundle:Registration:register }
-
-
 tensor_api_user_login:
     path:     /api_login
     defaults: { _controller: TensorUserBundle:Security:apilogin }

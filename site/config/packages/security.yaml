@@ -28,6 +28,7 @@ security:
                 path:   tensor_user_logout
                 target: tensor_core_landing
                 success_handler: logout_handler
+            access_denied_handler: access_denied_handler 
 
 
     role_hierarchy:

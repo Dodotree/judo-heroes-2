@@ -3,10 +3,10 @@
     <h1>Bitcoin Robo!</h1>
     <h3>Real time AI trading</h3>
     <router-view @stateChangeForRouter="mapStateToRoute"></router-view>
-    <p>
-    <router-link :to="{name: 'LoginForm', params: { something: 'getIt' } }">Login</router-link>
-    <router-link :to="{name: 'RegisterForm'}">Register</router-link>
-    <router-link :to="{name: 'ResetPass'}">Reset</router-link>
+    <p class="landing-tabs">
+      <router-link :to="{name: 'LoginForm', params: { something: 'getIt' } }">Login</router-link>
+      <router-link :to="{name: 'RegisterForm'}">Register</router-link>
+      <router-link :to="{name: 'ResetPass'}">Reset</router-link>
     </p>
   </div>
 </template>
@@ -36,6 +36,19 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: $vue-blue;
+}
+
+.landing-tabs {
+  color: #fff;
+  text-align: center;
+  a {
+    &:hover{
+      text-decoration: underline;
+    }
+    &.router-link-active{
+      display: none;
+    }
+  }
 }
 
 </style>

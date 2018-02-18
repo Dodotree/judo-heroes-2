@@ -2,23 +2,50 @@
   <div id="app">
     <router-view @stateChangeForRouter="mapStateToRoute"></router-view>
     <Footer/>
+    <FlashBox/>
+    <button @click="addFlashCard('Button click')">Add Flash Card</button>
+
+    <Provider :mapStateToProps="mapStateToProps" :store="store">
+      <template slot-scope="lastId">
+      </template>
+    </Provider>
+
   </div>
 </template>
 
 <script>
+import Provider from 'vuejs-redux'
+import * as Actions from './actions'
+
 
 import Footer from './components/Footer.vue'
+import FlashBox from './components/FlashBox.vue'
 
 export default {
-  inject: ['mapStateToRoute'],
+  inject: ['mapStateToRoute', 'store'],
   components: {
-    Footer
+    Provider,
+    Footer,
+    FlashBox
   },
   created () {
-    console.log('!!!!!!!!! created !!!!!!!!!!!!!!', this.mapStateToRoute)
   },
   beforeMount () {
-    console.log('!!!!!!!!! beforeMount !!!!!!!!!!!!!!', this)
+  },
+  methods: {
+    mapStateToProps (state) {
+      console.log('**************LLLLLLLLLLLL********************', state)
+      if (state.errorMessage) {
+        console.log('state.errorMessage', state.errorMessage)
+        this.addFlashCard(state.errorMessage)
+        this.store.dispatch(Actions.resetErrorMessage('kkk'))
+      }
+      return {}
+    },
+    addFlashCard (note) {
+      console.log('FLASH')
+      this.$emit('new-flash-card', 'danger', note)
+    }
   }
 }
 

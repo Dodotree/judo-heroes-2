@@ -2,11 +2,12 @@
 
   <nav class="pagination-menu">
     <router-link
+      v-if="pgO.first < pgO.current"
       :to="{name: routeName, params: { subpageId: pgO.startPage, pageParameterName: pgO.pageParameterName } }">
       First
     </router-link>
     <router-link
-      v-if="pgO.first !== pgO.current"
+      v-if="pgO.first < pgO.current"
       :to="{name: routeName, params: { subpageId: pgO.previous, pageParameterName: pgO.pageParameterName } }">
       Back
     </router-link>
@@ -17,11 +18,12 @@
       {{subpageId}}
     </router-link>
     <router-link
-      v-if="pgO.last !== pgO.current"
-      :to="{name: routeName, params: { subpageId: nextSubpage, pageParameterName: pgO.pageParameterName } }">
+      v-if="pgO.last > pgO.current"
+      :to="{name: routeName, params: { subpageId: pgO.next, pageParameterName: pgO.pageParameterName } }">
       Next
     </router-link>
     <router-link
+      v-if="pgO.last > pgO.current"
       :to="{name: routeName, params: { subpageId: pgO.endPage, pageParameterName: pgO.pageParameterName } }">
       Last
     </router-link>
@@ -45,5 +47,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+  .pagination-menu {
+    text-align: center;
+    a {
+      color: #0000ff;
+      &.router-link-active {
+        color: #000;
+      }
+    }
+  }
 
 </style>

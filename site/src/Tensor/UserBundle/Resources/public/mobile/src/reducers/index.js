@@ -31,6 +31,9 @@ const selections = (state = { athletes: {}, users: {} }, action) => {
   if (action.response && action.response.selections) {
     return assign({}, state, action.response.selections)
   }
+  if ('undefined' === typeof action.key) {
+    return state
+  }
   switch (action.type) {
     case 'SET_SELECTED':
       return assign({}, state, {[action.key]: {ids: action.ids}})
@@ -49,7 +52,10 @@ const selections = (state = { athletes: {}, users: {} }, action) => {
 const errorMessage = (state = null, action) => {
   const { type, error } = action
 
-  if (type === ActionTypes.RESET_ERROR_MESSAGE) {
+  if (type === ActionTypes.RESET_ERROR_MESSAGE && 'undefined' !== typeof action.key) {
+    // let newState = merge({}, state)
+    // delete newState[action.key]
+    // return newState
     return null
   } else if (error) {
     return error
@@ -58,10 +64,20 @@ const errorMessage = (state = null, action) => {
   return state
 }
 
+function sortakindaUnique () {
+  return 'xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8)
+    return v.toString(16)
+  })
+}
+
 // Updates the login data for different actions.
 const loggedUser = authenticate({
   mapActionToKey: (action) => 'loggedUser',
   types: [
+    ActionTypes.REGISTRATION_REQUEST,
+    ActionTypes.REGISTRATION_SUCCESS,
+    ActionTypes.REGISTRATION_FAILURE,
     ActionTypes.LOGIN_REQUEST,
     ActionTypes.LOGIN_SUCCESS,
     ActionTypes.LOGIN_FAILURE,

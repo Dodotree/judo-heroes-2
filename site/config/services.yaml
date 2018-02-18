@@ -14,6 +14,19 @@ services:
     logout_handler:
         autowire: true
         class: Tensor\UserBundle\Handler\LogoutSuccessHandler 
+    access_denied_handler:
+        autowire: true
+        class: Tensor\UserBundle\Handler\AccessDeniedHandler 
+    # redirect_listener:
+    #    class: Tensor\UserBundle\Listener\RedirectListener
+    #    arguments: ['@security.token_storage']
+    #    tags:
+    #        - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+    exeption_listener:
+        class: Tensor\UserBundle\Listener\ExeptionListener
+        arguments: ['@security.token_storage']
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }
 
     api_functions:
         public: true

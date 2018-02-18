@@ -2,6 +2,8 @@ import Vue from 'vue'
 import router from './router'
 import App from './App'
 
+import assign from 'lodash/assign'
+
 import configureStore from './store/configureStore'
 import { normalizeResponse } from './middleware/api'
 import * as Actions from './actions'
@@ -24,7 +26,7 @@ let preloadedState = {
   'pagination': {
     'athletes': {
       isFetching: false,
-      ids: ('undefined' !== typeof nInitialState.pagination.athletes) ? nInitialState.pagination.athletes.ids : [],
+      ids: [],
       current: 1,
       first: 1,
       last: 1,
@@ -39,6 +41,7 @@ let preloadedState = {
   },
   'counterValue': 0
 }
+preloadedState.pagination = assign({}, preloadedState.pagination, nInitialState.pagination)
 
 let store = configureStore(preloadedState)
 
@@ -48,7 +51,7 @@ let mapStateToRoute = (state) => {
   console.log('**************** routing state **************', router.history.current, state.loggedUser, state.loggedUser.loggedIn)
   if (router.history.current.meta.requireLogout && state.loggedUser.loggedIn) {
     console.log('**************** Route to private', storeState.pagination.athletes.current)
-    router.push('/home/'+storeState.pagination.athletes.current)
+    router.push('/home/' + storeState.pagination.athletes.current)
     // named route didn't create URL for some reason
     // router.push({name: 'private', subpageId: storeState.pagination.athletes.current})
   } else if (router.history.current.meta.requireLogin && !state.loggedUser.loggedIn) {

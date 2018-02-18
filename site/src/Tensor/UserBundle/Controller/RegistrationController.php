@@ -21,9 +21,9 @@ class RegistrationController extends Controller
     public function registerAction(Request $request)
     {
         if ($this->getUser() instanceof User) {
-            return $this->redirectToRoute('tensor_core_home', array('_page'=>'private'));
+            return $this->redirectToRoute('tensor_core_home', array('_subpage'=>1));
         }
-var_dump($_POST, $_GET, $request->getContent());
+// var_dump($_POST, $_GET, $request->getContent());
         // 1) build the form
         $user = new User();
         $form = $this->createForm(UserType::class, $user);

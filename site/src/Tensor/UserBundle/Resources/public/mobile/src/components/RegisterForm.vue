@@ -2,7 +2,7 @@
   <Provider :mapDispatchToProps="mapDispatchToProps" :mapStateToProps="mapStateToProps" :store="store">
     <template slot-scope="{actions}"> <!-- We our state via slot-scope. Passing down the props to the component is no more hidden -->
       <div>
-        <form @submit.prevent="submitRegisterForm" name="user" method="post" id="register-form">
+        <form @submit.prevent="actions.registerUser({user})" name="user" method="post" id="register-form">
           <BaseInputText
             v-model="user.username"
             type="text"
@@ -39,8 +39,6 @@ import * as Actions from '../actions'
 import BaseInputText from './BaseInputText.vue'
 import SubmitButton from './SubmitButton.vue'
 
-import { apiRegister } from '../middleware/api'
-
 export default {
   inject: ['store'],
   props: ['name'],
@@ -68,10 +66,6 @@ export default {
     },
     mapDispatchToProps (dispatch) {
       return {actions: bindActionCreators(Actions, dispatch)}
-    },
-    submitRegisterForm () {
-      console.log('submit register')
-      apiRegister(this.user)
     }
   }
 }

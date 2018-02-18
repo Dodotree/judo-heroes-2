@@ -4,8 +4,6 @@ import assign from 'lodash/assign'
 // Creates a reducer managing pagination, given the action types to handle,
 // and a function telling how to extract the key from an action.
 const paginate = ({ types, mapActionToKey }) => {
-  console.log('Pagination enter point')
-
   if (!Array.isArray(types) || types.length !== 3) {
     throw new Error('Expected types to be an array of three elements.')
   }
@@ -18,8 +16,6 @@ const paginate = ({ types, mapActionToKey }) => {
 
   const [ requestType, successType, failureType ] = types
 
-  console.log('define pagination reducer function(defaults and switch by action.type)')
-  console.log('takes care of isFetching, nextPageUrl and pageCount, ids[]')
   const updatePagination = (state = {
     isFetching: false,
     ids: [],
@@ -34,7 +30,7 @@ const paginate = ({ types, mapActionToKey }) => {
     numItemsPerPage: 1,
     pageParameterName: 'Page'
   }, action) => {
-    console.log('Pagination update')
+    console.log('Pagination update if type matches')
 
     switch (action.type) {
       case requestType:
@@ -58,8 +54,6 @@ const paginate = ({ types, mapActionToKey }) => {
         return state
     }
   }
-
-  console.log('Return pagination reducer function')
 
   return (state = {}, action) => {
     // Update pagination by key
