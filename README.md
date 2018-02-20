@@ -1,6 +1,9 @@
 
-<img src="https://github.com/Dodotree/judo-heroes-2/blob/master/HostedRobots1.JPG?raw=true">
+<img src="https://github.com/Dodotree/judo-heroes-1/blob/master/HostedRobots1.JPG?raw=true">
 <img src="https://github.com/Dodotree/judo-heroes-2/blob/master/HostedRobots2.JPG?raw=true">
+
+Template for a site contains most things you usually need to implement on your site sooner or later: redux state,
+login, pagination, editable lists, nice alerts, charts. In one hand it's just a collection of the tutorials, on the other hand you can produce full specs sites out of it by following same pattern. And you can just plug in front end part into PhoneGap and enjoy mobile apps also.
 
 /***************************************/
 
