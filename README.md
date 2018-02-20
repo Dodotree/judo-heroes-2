@@ -1,5 +1,5 @@
 
-<img src="https://github.com/Dodotree/judo-heroes-1/blob/master/HostedRobots1.JPG?raw=true">
+<img src="https://raw.githubusercontent.com/Dodotree/judo-heroes-2/master/HostedRobots1.JPG">
 <img src="https://github.com/Dodotree/judo-heroes-2/blob/master/HostedRobots2.JPG?raw=true">
 
 Template for a site contains most things you usually need to implement on your site sooner or later: redux state,
