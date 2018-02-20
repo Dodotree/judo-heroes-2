@@ -1,8 +1,12 @@
+
+<img src="https://github.com/Dodotree/judo-heroes-2/blob/master/HostedRobots1.JPG?raw=true">
+<img src="https://github.com/Dodotree/judo-heroes-2/blob/master/HostedRobots2.JPG?raw=true">
+
 /***************************************/
 
 React.js and Redux, Backend is a seed for Symfony4 API
 
-Fork contains proof of concept based on several front end tutorials: judo-heroes2 itself,
+Fork contains proof of concept based on several great tutorials: judo-heroes2 itself,
 
 https://github.com/sadams/todo-redux-react-webpack
 
@@ -11,6 +15,10 @@ https://github.com/gaearon/todos/tree/master/src
 https://github.com/reactjs/redux/tree/master/examples/real-world
 
 https://engineering.thetrainline.com/handling-api-calls-in-redux-with-redux-api-middleware-c95c38816e13
+
+Vue and D3.js
+
+https://codepen.io/terrymun/details/gmBdKq
 
 Look at branches to fetch code for each tutorial 
 and change https://github.com   to  https://codesandbox.io/s/github  see it in action in code sandbox
