@@ -25,6 +25,9 @@ class LandingController extends Controller
                     'athletes' => $athletes,
                     'pagination' => $pagination,
                     'loggedUser' => ['user' => ['id' => $user->getId(), 'username' => $user->getUsername()]],
+                    'charts' => [ 
+                        'main' => $this->get('api_functions')->getChartData(),
+                    ]
                 ]
             ]);
         }

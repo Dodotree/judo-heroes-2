@@ -25,7 +25,9 @@ class ApiController extends Controller
 
         return $this->json([
             'successes'=> [
-                'post' => $_POST,
+                'charts' => [
+                    'main' => $this->get('api_functions')->getChartData(),
+                ],
                 'athletes'=>$athletes,
                 'pagination'=> [
                     'athletes'=> $pagination,

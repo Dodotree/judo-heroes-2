@@ -23,6 +23,7 @@ let preloadedState = {
     'loggedIn': loggedIn,
     'isFetching': false
   },
+  'charts': nInitialState.charts,
   'pagination': {
     'athletes': {
       isFetching: false,
@@ -39,7 +40,7 @@ let preloadedState = {
       pageParameterName: 'Page'
     }
   },
-  'counterValue': 0
+  'counter': 0
 }
 preloadedState.pagination = assign({}, preloadedState.pagination, nInitialState.pagination)
 

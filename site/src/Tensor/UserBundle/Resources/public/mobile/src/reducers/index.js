@@ -18,6 +18,13 @@ const counter = (state = 0, action) => {
   }
 }
 
+const charts = (state = {main: {id: 'main', title: 'Main Title', data: []}}, action) => {
+  if (action.response && action.response.charts) {
+    return merge({}, state, action.response.charts)
+  }
+  return state
+}
+
 // Updates an entity cache in response to any action with response.entities.
 const entities = (state = { athletes: {}, users: {} }, action) => {
   if (action.response && action.response.entities) {
@@ -100,6 +107,7 @@ const pagination = paginate({
 // All together now
 const rootReducer = combineReducers({
   counter,
+  charts, 
   entities,
   selections,
   loggedUser, // entities before logged in and pagination

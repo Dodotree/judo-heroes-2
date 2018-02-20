@@ -4,6 +4,8 @@
     <!-- We our state via slot-scope. Passing down the props to the component is no more hidden -->
       <div>
 
+        <ChartHolder />
+
         <p>{{name}}</p>
 
         <ul v-if="todo_ids.length" class="athletes-selector">
@@ -20,10 +22,11 @@
           Nothing left in the list. Add a new todo in the input above.
         </p>
 
-        <Pagination v-if="paginationObject.pagesInRange.length > 1"
+        <Pagination v-if="paginationObject.pagesInRange && paginationObject.pagesInRange.length > 1"
             :pgO="paginationObject" routeName="private" />
 
         <Counter :counterValue="counterValue" :actions="actions" :title="title" />
+
 
       </div>
     </template>
@@ -35,7 +38,9 @@
 import { bindActionCreators } from 'redux'
 import Provider from 'vuejs-redux'
 import * as Actions from '../actions'
+
 import Counter from '../components/Counter.vue'
+import ChartHolder from '../components/ChartHolder.vue'
 
 import TodoListItem from './TodoListItem.vue'
 import Pagination from './Pagination.vue'
@@ -47,6 +52,7 @@ export default {
   props: ['name'],
   components: {
     Counter,
+    ChartHolder,
     Provider,
     Pagination,
     TodoListItem

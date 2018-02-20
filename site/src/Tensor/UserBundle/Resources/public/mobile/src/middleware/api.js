@@ -1,8 +1,9 @@
 import axios from 'axios'
-
+import * as d3 from 'd3'
 import merge from 'lodash/merge'
 import { normalize } from 'normalizr'
 // import fetch from 'cross-fetch'
+
 import { Schemas } from '../schemas'
 
 const API_ROOT = ''
@@ -20,11 +21,28 @@ let apiKeyToSchema = {
   'athletes': {'schema': Schemas.ATHLETE_ARRAY, 'selected': true}
 }
 
+export const normalizeChartData = (chart, offset) => chart.columns.slice(offset).map((id, index) => ({
+    id: id,
+    domain: d3.extent(chart.data, d => d3.utcParse('%Y-%m-%dT%H:%M:%S')(d[0]).setHours(0, 0, 0, 0)),
+    values: chart.data.map(d => ({
+        timestamp: d3.utcParse('%Y-%m-%dT%H:%M:%S')(d[0]).setHours(0, 0, 0, 0),
+        value: d[index + offset]
+    }))
+  }))
+
 export const normalizeResponse = (response) => {
   let nEntities = {}
   let nPagination = {}
   let nSelection = {}
   let respPagination = ('undefined' !== typeof response.pagination) ? response.pagination : {}
+
+  let respCharts = null
+  if('undefined' !== typeof response.charts) {
+    for (var key in response.charts) {
+      response.charts[key].data = normalizeChartData(response.charts[key], 1)
+    }
+    respCharts = response.charts
+  }
 
   for (var key in apiKeyToSchema) {
     if ('undefined' !== typeof response[key]) {
@@ -38,15 +56,13 @@ export const normalizeResponse = (response) => {
           nPagination[key] = { ids: normData.result }
           nSelection[key] = { ids: normData.result.slice() }
         }
-        console.log('%%%%%%%%%%%%%%%%%%', nSelection[key].ids)
-        console.log('++++++++++++++++++', normData.result)
       } else if (apiKeyToSchema[key].selected) {
         nPagination[key] = normData.result
         nSelection[key] = normData.result
       }
     }
   }
-  return { 'entities': nEntities, 'pagination': nPagination, 'selections': nSelection }
+  return { 'entities': nEntities, 'pagination': nPagination, 'selections': nSelection, 'charts': respCharts }
 }
 
 /// ///////////////////////////////////////////////

@@ -4,7 +4,7 @@
 
       <div id="layout">
         <div id="global-header">
-          <h1>Bitcoin Robo!</h1>
+          <h1>Hosted Robots</h1>
           <div class="pull-right">
             <router-link :to="{name: 'SettingsForm', params: { something: 'getIt' } }">Settings</router-link>
             <a href="#" @click.prevent="actions.logoutUser()" :actions="actions">Logout</a>

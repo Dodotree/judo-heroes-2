@@ -1,6 +1,6 @@
 <template>
   <div id="landing-page">
-    <h1>Bitcoin Robo!</h1>
+    <h1>Hosted Robots</h1>
     <h3>Real time AI trading</h3>
     <router-view @stateChangeForRouter="mapStateToRoute"></router-view>
     <p class="landing-tabs">

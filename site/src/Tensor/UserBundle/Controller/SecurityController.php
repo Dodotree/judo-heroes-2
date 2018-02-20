@@ -43,6 +43,9 @@ class SecurityController extends Controller
         list($athletes, $pagination) = $this->get('api_functions')->getAthletesPagination($page, $per_page);
 
     return $this->json(['successes'=>[
+        'charts' => [
+            'main' => $this->get('api_functions')->getChartData(),
+        ],
         'athletes'=>$athletes,
         'pagination'=> [
             'athletes'=> $pagination,

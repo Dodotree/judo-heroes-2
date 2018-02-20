@@ -17,7 +17,6 @@
 import Provider from 'vuejs-redux'
 import * as Actions from './actions'
 
-
 import Footer from './components/Footer.vue'
 import FlashBox from './components/FlashBox.vue'
 
