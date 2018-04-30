@@ -9,6 +9,14 @@
 ### Security
 
 
+## [0.9.0]
+### Fixed
+- issue #29: Python3 complains about bytes-like object in fping.py
+
+### Changed
+- port to pluginmgr .5
+- updated other deps
+
 ## [0.8.0]
 ### Fixed
 - issue #29: Python3 complains about bytes-like object in fping.py
