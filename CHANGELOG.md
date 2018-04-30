@@ -9,6 +9,11 @@
 ### Security
 
 
+
+## [0.10.0]
+### Fixed
+- Something
+
 ## [0.9.0]
 ### Fixed
 - issue #29: Python3 complains about bytes-like object in fping.py
