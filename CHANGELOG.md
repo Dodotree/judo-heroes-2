@@ -9,6 +9,12 @@
 ### Security
 
 
+## [0.11.0]
+### Fixed
+- Something 1
+- Something 2
+- Something 3
+
 
 ## [0.10.0]
 ### Fixed
