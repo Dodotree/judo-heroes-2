@@ -9,6 +9,12 @@
 ### Security
 
 
+## [0.16.0]
+### Fixed
+- Something 1234
+- Something 2234
+- Something 3234
+
 ## [0.12.0]
 ### Fixed
 - Something 1
